@@ -2,6 +2,6 @@
 
 ## C++
 
-+ [프로그램 구조](https://github.com/SeonBap/TIL/blob/main/Cpp/Program_Structure.txt)
++ [C++ 프로그래밍 언어](https://github.com/SeonBap/TIL/blob/main/Cpp/Program_Structure.md)
 
 ## C#
