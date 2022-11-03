@@ -1,4 +1,4 @@
-# 전처리기(Preprocesser)
+# 전처리기(Preprocessor)
 
 전처리기(Preprocesser)는 실행 파일을 생성하는 과정에서 컴파일하기 전, 소스 파일의 텍스트를 조작하는 텍스트 처리기입니다. 전처리기가 실행되면 각 코드 파일에서 지시자(Directives)를 찾는다. 지시자(Directives)는 #으로 시작해서 줄바꿈으로 끝나는 코드다.
 
