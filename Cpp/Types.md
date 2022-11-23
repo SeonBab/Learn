@@ -23,7 +23,7 @@ C++에서는 일반적으로 기본 자료형으로 정의한 것을 변수, 사
     </tr>
     <tr>
         <td>문자형(정수형)</td>
-        <td>char</td>
+        <td>char (character)</td>
         <td>문자 및 정수</td>
         <td>1바이트</td>
         <td>-128 ~ 127</td>
@@ -36,7 +36,7 @@ C++에서는 일반적으로 기본 자료형으로 정의한 것을 변수, 사
         <td>-32768 ~ 32767</td>
     </tr>
     <tr>
-        <td>int</td>
+        <td>int (integer)</td>
         <td>정수값 저장</td>
         <td>4바이트</td>
         <td>-214783648 ~ 214783647</td>
@@ -72,8 +72,14 @@ C++에서는 일반적으로 기본 자료형으로 정의한 것을 변수, 사
     </tr>
     <tr>
         <td>불형</td>
-        <td>bool</td>
+        <td>bool (boolean)</td>
         <td>참/거짓 표현</td>
         <td>1바이트</td>
         <td>true,false</td>
 </table>
+
+## int
+int는 32, 64bit 시스템 상관없이 4byte이다.
+
+## long
+32bit 시스템에서는 4byte지만 64bit 시스템에서 long은 8byte 정수 자료형이다.
