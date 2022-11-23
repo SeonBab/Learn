@@ -43,7 +43,7 @@ C++에서 변수를 선언하는 방법에는 다음과 같이 두 가지 방법
 ```
 int num0; // 선언
 int num1;
-num0 = 20; // 초기화
+num0 = 20; // 정의
 num1 = 30;
 ```
 
@@ -54,3 +54,9 @@ C++에서는 변수의 선언과 동시에 그 값을 초기화할 수 있습니
 
 ```
 int num0{}, num1 = 1, num2{2}, num3(3);
+
+int x = 1;              copy initialization (복사)
+int y(2);               direct initialization (직접)
+int z{ 3 };             uniform initialization (유니폼)
+int w = { 4 };          uniform copy initialization (유니폼 복사)
+```
