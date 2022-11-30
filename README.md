@@ -8,5 +8,3 @@
 + [변수](https://github.com/SeonBap/TIL/blob/main/Cpp/Variable.md)
 + [자료형](https://github.com/SeonBap/TIL/blob/main/Cpp/Types.md)
 + [실수 표현](https://github.com/SeonBap/TIL/blob/main/Cpp/Decimal.md)
-
-## C#
