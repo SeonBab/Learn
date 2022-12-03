@@ -7,4 +7,4 @@
 + [전처리기 지시문](https://github.com/SeonBap/TIL/blob/main/Cpp/Preprocessor_Directives.md)
 + [변수](https://github.com/SeonBap/TIL/blob/main/Cpp/Variable.md)
 + [자료형](https://github.com/SeonBap/TIL/blob/main/Cpp/Types.md)
-+ [실수 표현과 문자 표현](https://github.com/SeonBap/TIL/blob/main/Cpp/Decimal.md)
++ [실수 표현과 문자 표현](https://github.com/SeonBap/TIL/blob/main/Cpp/Decimal_and_Letter.md)
