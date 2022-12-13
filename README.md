@@ -8,3 +8,4 @@
 + [변수](https://github.com/SeonBap/TIL/blob/main/Cpp/Variable.md)
 + [자료형](https://github.com/SeonBap/TIL/blob/main/Cpp/Types.md)
 + [실수 표현과 문자 표현](https://github.com/SeonBap/TIL/blob/main/Cpp/Decimal_and_Letter.md)
++ [형변환](https://github.com/SeonBap/TIL/blob/main/Cpp/Type_Conversion.md)
