@@ -112,3 +112,97 @@ func_two( (x--, y + 2), z);
 func_one에 대한 함수 호출에서 쉼표로 구분된 세 인수 x, y+2, z가 전달됩니다. func_two에 대한 함수 호출에서 괄호는 컴파일러가 첫 번째 쉼표를 순차적 계산 연산자로 해석하도록 합니다. 이 함수 호출은 두 인수를 func_two에 전달합니다. 첫 번째 인수는(x--, y + 2) 식의 값과 형식을 가진 순차적 계산 연산 y + 2의 결과물이며, 두 번째 인수는 z입니다.
 
 ## 연산자 우선순위
+
+<table>
+<tr>
+<th>연산순위</th>
+<th>연산자</th>
+<th>설명</th>
+<th>결합 방향</th>
+</tr>
+<tr>
+<th>1</th>
+<td><code>::</code></td>
+<td>범위 지정 (scope resolution)</td>
+<td rowspan="10">좌 → 우</td>
+</tr>
+<tr>
+<th rowspan="9">2</th>
+<td><code>.</code> 또는 <code>-></code></td>
+<td>멤버 액세스</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>배열 첨자</td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>함수 호출</td>
+</tr>
+<tr>
+<td><code>++</code> 또는 <code>--</code></td>
+<td>후위 증가와 감소</td>
+</tr>
+<tr>
+<td><code>typeid</code></td>
+<td>타입 이름</td>
+</tr>
+<tr>
+<td><code>const_cast</code></td>
+<td>상수 타입 변환</td>
+</tr>
+<tr>
+<td><code>dynamic_cast</code></td>
+<td>동적 타입 변환</td>
+</tr>
+<tr>
+<td><code>reinterpret_cast</code></td>
+<td>재해석 타입 변환</td>
+</tr>
+<tr>
+<td><code>static_cast</code></td>
+<td>정적 타입 변환</td>
+</tr>
+<tr>
+<td rowspan="11">3</td>
+<td><code>sizeof</code></td>
+<td>개체 또는 타입의 크기</td>
+<td rowspan="11">우 → 좌</td>
+</tr>
+<tr>
+<td><code>++</code> 또는 <code>--</code></td>
+<td>전위 증가와 감소</td>
+</tr>
+<tr>
+<td><code>!</code> 또는 <code>~</code></td>
+<td>논리 NOT, 비트 NOT</td>
+</tr>
+<tr>
+<td><code>-</code> 또는 <code>+</code></td>
+<td>음의 부호, 양의 부호<td>
+</tr>
+<tr>
+<td><code>&</code></td>
+<td>주소값</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>역참조</td>
+</tr>
+<tr>
+<td><code>new</code> 또는 <code>new[]</code></td>
+<td>동적 메모리 할당</td>
+</tr>
+<tr>
+<td><code>delete</code> 또는 <code>delete[]</code></td>
+<td>동적 메모리 해제</td>
+</tr>
+<tr>
+<td><code>(type)</code></td>
+<td>타입 캐스트</td>
+</tr>
+<tr>
+<td><code></code></td>
+<td></td>
+</tr>
+</table>
