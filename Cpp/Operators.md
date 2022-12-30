@@ -33,7 +33,7 @@
 
 산술 연산의 특별한 상황에 해당하는 연산자입니다. 즉 이미 할당받은 저장공간(변수)에 산술 연산을 수행하고 그 저장공간에 다시 저장하는 특별한 경우에 사용됩니다.
 
-## 관계 연산자(비교 연산자)
+## 비교 연산자(관계 연산자)
 
 이항 연산자로 피연산자가 2개이며 왼쪽에서 오른쪽으로 결합되고 두 개의 피연산자에 대한 관계 연산 결과는 부울 값(참 또는 거짓)입니다.
 
@@ -164,10 +164,10 @@ func_one에 대한 함수 호출에서 쉼표로 구분된 세 인수 x, y+2, z�
 <td>정적 타입 변환</td>
 </tr>
 <tr>
-<td rowspan="11">3</td>
+<td rowspan="9">3</td>
 <td><code>sizeof</code></td>
 <td>개체 또는 타입의 크기</td>
-<td rowspan="11">우 → 좌</td>
+<td rowspan="9">우 → 좌</td>
 </tr>
 <tr>
 <td><code>++</code> 또는 <code>--</code></td>
@@ -202,7 +202,100 @@ func_one에 대한 함수 호출에서 쉼표로 구분된 세 인수 x, y+2, z�
 <td>타입 캐스트</td>
 </tr>
 <tr>
-<td><code></code></td>
-<td></td>
+<td>4</td>
+<td><code>.*</code> 또는 <code>.-></code></td>
+<td>멤버 포인터</td>
+<td rowspan="5">좌 → 우</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>*</code> 또는 <code>/</code> 또는 <code>%</code></td>
+<td>곱셈, 나누기, 나머지</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>+</code> 또는 <code>-</code></td>
+<td>더하기, 빼기</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code><<</code> 또는 <code>>></code></td>
+<td>비트 왼쪽 시프트와 오른쪽 시프트</td>
+</tr>
+<tr>
+<td rowspan="2">8</td>
+<td><code><</code> 또는 <code><=</code></td>
+<td>비교(관계)연산자 < 와 ≤</td>
+</tr>
+<tr>
+<td><code>></code> 또는 <code>>=</code></td>
+<td>비교(관계)연산자 > 와 ≥</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>==</code> 또는 <code>!=</code></td>
+<td>비교(관계)연산자 = 와 ≠</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>&</code></td>
+<td>비트 AND</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>^</code></td>
+<td>배타적 비트 OR</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>|</code></td>
+<td>포괄적 비트 OR </td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>&&</code></td>
+<td>논리적 AND</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>||</code></td>
+<td>논리적 OR</td>
+</tr>
+<tr>
+<td rowspan="6">15</td>
+<td><code>?:</code></td>
+<td>삼항 연산자(조건 연산자)</td>
+<td rowspan="7">우 → 좌</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>직접 대입</td>
+</tr>
+<tr>
+<td><code>*=</code> 또는 <code>/=</code> 또는 <code>%=</code></td>
+<td>곱, 몫, 나머지 대입</td>
+</tr>
+<tr>
+<td><code>+=</code> 또는 <code>-=</code></td>
+<td>합과 차 대입</td>
+</tr>
+<tr>
+<td><code><<=</code> 또는 <code>>>=</code></td>
+<td>비트 왼쪽 쉬프트와 오른쪽 쉬프트 후 할당</td>
+</tr>
+<tr>
+<td><code>&=</code> 또는 <code>^=</code> 또는 <code>|=</code></td>
+<td>비트 AND, 배타적 비트 OR, 포괄적 비트 OR 대입</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>throw</code></td>
+<td>(예외를 위한)Throw 연산자</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>,</code></td>
+<td>쉼표</td>
+<td>좌 → 우</td>
 </tr>
 </table>
