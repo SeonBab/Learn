@@ -11,3 +11,4 @@
 + [배열 두 배 만들기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_두_배_만들기.md)
 + [중앙값 구하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/중앙값_구하기.md)
 + [최빈값 구하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/최빈값_구하기.md)
++ [짝수는 싫어요](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/짝수는_싫어요.md)
