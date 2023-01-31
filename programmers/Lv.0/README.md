@@ -12,4 +12,5 @@
 + [중앙값 구하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/중앙값_구하기.md)
 + [최빈값 구하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/최빈값_구하기.md)
 + [짝수는 싫어요](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/짝수는_싫어요.md)
-+ [피자 나눠 먹기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_1.md)
++ [피자 나눠 먹기 1](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_1.md)
++ [피자_나눠_먹기 2](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_2.md)
