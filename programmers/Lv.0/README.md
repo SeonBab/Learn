@@ -15,3 +15,4 @@
 + [피자 나눠 먹기 1](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_1.md)
 + [피자 나눠 먹기 2](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_2.md)
 + [피자 나눠 먹기 3](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_3.md)
++ [배열의 평균값](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열의_평균값.md)
