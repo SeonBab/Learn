@@ -16,3 +16,4 @@
 + [피자 나눠 먹기 2](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_2.md)
 + [피자 나눠 먹기 3](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/피자_나눠_먹기_3.md)
 + [배열의 평균값](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열의_평균값.md)
++ [옷가게 할인 받기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/옷가게_할인_받기.md)
