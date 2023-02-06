@@ -21,3 +21,4 @@
 + [나이 출력](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/나이_출력.md)
 + [배열 뒤집기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_뒤집기.md)
 + [문자열 뒤집기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/문자열_뒤집기.md)
++ [직각삼각형 출력하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/문자열_뒤집기.md)
