@@ -26,3 +26,4 @@
 + [문자 반복 출력하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/문자_반복_출력하기.md)
 + [특정 문자 제거하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/특정_문자_제거하기.md)
 + [각도기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/각도기.md)
++ [양꼬치](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/양꼬치.md)
