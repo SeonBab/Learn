@@ -27,3 +27,4 @@
 + [특정 문자 제거하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/특정_문자_제거하기.md)
 + [각도기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/각도기.md)
 + [양꼬치](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/양꼬치.md)
++ [짝수의 합](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/짝수의_합.md)
