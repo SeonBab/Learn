@@ -28,3 +28,4 @@
 + [각도기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/각도기.md)
 + [양꼬치](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/양꼬치.md)
 + [짝수의 합](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/짝수의_합.md)
++ [배열 자르기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_자르기.md)
