@@ -30,3 +30,4 @@
 + [짝수의 합](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/짝수의_합.md)
 + [배열 자르기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_자르기.md)
 + [외계행성의 나이](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/외계행성의_나이.md)
++ [진료 순서 정하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/진료_순서_정하기.md)
