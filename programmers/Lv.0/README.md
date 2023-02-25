@@ -35,3 +35,4 @@
 + [개미 군단](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/개미_군단.md)
 + [모스부호 1](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/모스부호_1.md)
 + [가위 바위 보](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/가위_바위_보.md)
++ [구슬을 나누는 경우의 수](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/구슬을_나누는_경우의_수.md)
