@@ -37,3 +37,4 @@
 + [가위 바위 보](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/가위_바위_보.md)
 + [구슬을 나누는 경우의 수](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/구슬을_나누는_경우의_수.md)
 + [점의 위치 구하기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/점의_위치_구하기.md)
++ [2차원으로 만들기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/2차원으로_만들기.md)
