@@ -217,3 +217,45 @@ Sum(2);         // a는 2가 b는 기본 값이 전달 됩니다.
 SUm(2, 3);      // a는 2가 b는 3이 전달 됩니다.
 ```
 
+# 가변 매개변수(Variable argument)
+
+말 그대로 고정되지 않은 매개변수를 말합니다. C언어의 frintf()함수처럼 정해지지 않은 개수의 매개변수를 받아야 할 때 사용합니다.
+
+가변 매개변수는 아래와 같이 매개변수를 ... 표시로 나타냅니다.
+
+```
+void function(int ...)
+```
+
+아래와 같이 사용할 수 있습니다.
+```
+function(1, 2, 3, 4, 5);
+function(1);
+function(1,2,3);
+```
+
+함수 내에서 가변 매개변수를 다루기 위해 사용하는 1개의 헤더 파일과 4가지의 매크로가 있습니다.
+
+```
+#include <cstdarg>
+
+#define va_start    __crt_va_start
+#define va_arg      __crt_va_arg
+#define va_end      __crt_va_end
+#define va_copy(destination, source) ((destination) = (source))
+```
+
+위 매크로를 사용하기 위해선 va_list라는 타입의 변수가 필요합니다.
+
+```
+typedef char* va_lsit;  // va_list는 char* 타입으로 정의되어 있고 가변 인자들을 가리키게 될 것입니다.
+```
+
+함수|설명
+---|---
+va_start|매개변수 리스트를 접근할 수 있도록 함(매개변수 리스트를 초기화)
+va_arg|매개변수 리스트의 다음 인자를 접근
+va_end|매개변수 리스트의 순회를 종료(매개변수 리스트를 정리)
+va_copy|매개변수 리스트를 복사
+va_list|va_start, va_end, va_copy에서 필요한 정보를 보유
+
