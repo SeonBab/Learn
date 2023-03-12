@@ -303,3 +303,140 @@ va_copy(vlist1, vlist2);
 
 + 첫 번째 매개변수에 변수의 개수, 두 번째 매개변수부터는 가변 매개변수들을 전달합니다. (배열을 함수에 전달하는 방법과 비슷합니다.)
 + 마지막 매개변수에는 처리 데이터에 포함되지 않는 값(nullptr)을 넣어 전달되는 데이터의 끝을 나타내도록 합니다. (문자열의 끝에 나타내는 배열을 함수에 전달하는 방법과 비슷합니다.)
+
+# 함수 중복(function overloading)
+
+동일한 이름 공간에서 이름이 같은 함수를 둘 이상 정의할 수 있습니다. C와 달리 함수 이름, 매개 변수의 자료형, 매개 변수의 수에 따라 이루어집니다. 이러한 함수들을 중복된(overloaded) 함수라 하고 매개 변수의 자료형 또는 매개 변수의 수에 따라 함수가 의미는 같으나 다른 기능을 가집니다.
+
+함수 오버로딩 개념은 매개 변수의 자료형과 개수가 다르면 같은 이름을 가진 함수를 여러 개 정의할 수 있도록 합니다. \ 
+매개변수의 자료형과 개수가 기존에 정의된 함수와 달라야 하며 리턴 자료형은 함수를 구별하는데 사용되지 않습니다. 즉 리턴 자료형만 다른 두 개의 함수는 중복할 수 없습니다.
+
+정수 두 개와 실 수 두개의 더하는 함수 Sum()를 다음과 같이 만들 수 있습니다.
+
+```
+int Sum(int a, int b);
+double Sum(double a, double b);
+```
+
+두개의 `int`를 제공하면 `Sum(int a, int b)`를 호출합니다. 두개의 `double`를 제공하면 `Sum(double a, double b)`를 호출합니다.
+
+같은 이름의 함수를 매개 변수가 없이 사용하려면 서로 다른 이름을 지정하거나 out참조 매개 변수를 전달하도록 하는게 좋습니다.
+```
+int getRandomInt();
+double getRandomDouble();
+void getRandomValue(int& out);
+void getRandomValue(double& out);
+```
+
+함수 중복은 다형성의 한 예로 전역 함수와 클래스의 멤버 함수에 모두 적용이 됩니다.
+
+함수 중복이 가능하기 위해서는 아래의 조건이 만족되어야 합니다.
++ 중복된 함수들의 이름이 동일한가.
++ 중복된 함수들은 매개 변수의 자료형 또는 개수가 다른가.
+
+`typedef` 선언은 새로운 타입을 만드는 것이 아니므로 아래 함수의 두 선언은 동일한 함수로 간주됩니다.
+```
+typedef char* string;
+void print(string value);
+void print(char* value);    // Compile Error
+```
+
+오버로드(overload)된 함수를 호출하면 다음 세 가지 결과 중 하나가 발생합니다.
++ 일치하는 함수가 있다. (호출이 특정 오버로드된 함수로 해석됩니다.)
++ 일치하는 함수가 없다. (오버로드된 함수 중에 인수가 일치하는 함수가 없다.)
++ 모호한 함수가 있다. (하나 이상의 오버로드된 함수와 인수가 일치한다.)
+
+오버로드된 함수가 호출되면 C++은 다음 프로세스를 통해 호출할 함수의 버전을 결정합니다.
+
+```
+void print(char* value);
+void print(int value);
+
+print(0);
+```
+
+0은 기술적으로 `print(char*)`와 일치할 수 있지만 `print(int)`와 정확하게 일치합니다.
+
+정확히 일치하는 항목이 없으면 C++에선 승격(promotion)을 통해 일치하는 함수를 찾으려 합니다.
++ `char`, `unsigned char` 및 `short`가 `int`로 승격 됩니다.
++ `unsigned short`는 `int`의 크기에 따라 `int`또는 `unsigned int`로 승격 됩니다.
++ `float`은 `double`로 승격됩니다.
++ 열거형`(enum)`은 `int`로 승격됩니다.
+
+```
+void print(char* value);
+void print(int value);
+
+print(a);
+```
+
+위 함수의 경우 print(char)가 없으므로 `char` `'a'`는 `int`로 승격되고 `print(int)와 일치합니다.
+
+승격(promotioon)이 불가능한 경우 C++은 표준 변환을 통해 일치하는 항목을 찾으려고 합니다.
++ 숫자 타입은 다른 숫자 타입으로 변환됩니다. (Ex. `int` -> `float`)
++ 열거형`(enum)`은 위에서 말한 숫자 공식과 같습니다. (Ex. `enum` -> `int` -> `float`)
++ 0은 포인터 타입 및 숫자 타입과 일치합니다. (Ex. `0` -> `char*` or `0` -> `float`)
++ 포인터는 void 포인터와 일치합니다.
+
+```
+struct Employee;
+void print(float value);
+void print(Employee value);
+
+print('a')
+```
+이 경우 `print(char)` 및 `print(int)`가 없으므로 `'a'`는 `float`으로 변환되어 `print(float)`과 일치합니다.
+
+C++은 사용자 정의 변환을 통해 일치하는 함수를 찾습니다. 클래스는 암시적으로 적용될 수 있는 다른 타입으로 변환을 정의할 수 있습니다. 예를 들어 클래스 X의 사용자 정의 변환을 `int`로 정의할 수 있습니다.
+```
+class X;
+
+void print(float value);
+void print(int value);
+
+X value;
+print(value);
+```
+
+모든 오버로드된 함수가 고유한 매개 변수를 가져야 하는 경우 호출이 둘 이상과 일치하면 컴파일 오류로 간주됩니다. 
+
+```
+void print(unsigned int value);
+void print(float value);
+
+print('a');
+print(0);
+print(3.14159);
+```
+
+`print('a')`의 경우 C++은 정확하게 일치하는 함수를 찾을 수 없습니다. `'a'`를 `int`로 승격시키려고 하지만 `print(int)`도 없습니다. 표준 변환을 하면 'a'는 `unsigned int`와 `float`으로 변환할 수 있습니다. 이 두 표준 변환으로 인해 모호한 일치가 발생합니다.
+
+print(0)도 비슷합니다. `0`은 `int`이며, `print(int)`는 없습니다. 결국, 표준 변환으로 인해 모호한 일치가 발생합니다.
+
+`print(3.14159)`와 같이 모든 리터럴 부동 소수점 값은 f접미사가 없으면 `double`이 됩니다. `3.14159`는 `dobule`이며 `print(double)`은 없습니다. 따라서 표준 변환을 통해 모호한 일치가 발생합니다.
+
+이 문제를 해결하기 위한 방법이 3가지 있습니다.
+
++ 호출하려고 하는 타입의 매개 변수를 가지는 새로운 오버로드된 함수를 정의한다. 그러면 C++은 정확히 일치하는 함수를 찾을 수 있습니다.
++ 모호한 인수를 호출할 함수의 타입으로 명시적 형변환을 사용합니다. 예를 들어보겠습니다.
+```
+int x = 0;
+print(static_cast<unsigned int>(x)); // print(unsigned int)를 호출할 것입니다.
+```
++ 인수가 리터럴인 경우 리터럴 접미사를 사용해 리터럴이 올바른 타입으로 해석되도록 합니다.
+```
+print(0u); // print(unsigned int)를 호출할 것입니다.
+```
+
+인수가 여러 개인 경우 C++은 일치하는 규칙을 차례로 각 인수에 적용합니다. \
+그러한 함수가 발견된 경우, 그 함수는 가장 일치하는 함수지만 그러한 함수를 찾을 수 없는 경우 호출은 모호함(또는 불일치)로 간주됩니다.
+
+```
+void func(char c, int x);
+void func(char c, double x)
+void func(char c, float x)
+
+func('x', 4);
+```
+
+모든 함수는 첫 번째 인수와 정확히 일치합니다. 그리고 두 번째 인수는 `func(char, int)`와 정확히 일치하지만 다른 함수는 변환이 필요합니다. 그래서 `func(char, int)`가 가장 일치하는 함수가 되고, 호출됩니다.
