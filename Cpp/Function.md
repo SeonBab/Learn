@@ -521,6 +521,29 @@ void ChangePrivate(Point& i)
 }
 ```
 
+# 재귀 함수 (recursive function)
+
+재귀(recursion)의 정의는 어떤 것을 정의할 때 자기 자신을 참조하는 것을 뜻합니다. 즉, 재귀 함수란 어떤 함수가 내부에서 자기 자신을 다시 호출하는 재귀 호출(recursive call)을 사용하는 함수입니다.
+
+복잡한 문제를 간단하게 논리적으로 표현할 수 있도록 해주며, 변수의 사용을 줄일 수 있습니다. \
+함수의 호출이 반복되므로 stack 메모리를 많이 사용해 stack overflow를 주의해야합니다. \
+언제 호출을 그만둘 것인지 정의해야하는데 그렇지 않으면 무한루프처럼 계속 자기 자신을 호출하게 되므로 종료를 위한 조건을 가진 명령문이 필요합니다.
+
+재귀함수를 이용한 알고리즘입니다.
+```
+int Factorial(int num)
+{
+    if (num == 1)
+    {
+        return 1;
+    }
+
+    return num * Factorial(int num - 1);
+}
+```
+
+<img src= https://blog.kakaocdn.net/dn/q4JIZ/btqAxOrzkwh/mSxxj2mojHSYE4bmjqmfS1/img.png width="50%" height="70%" title="재귀 함수" alt="재귀 함수"></img>
+
 # 람다 표현(Lambda exmpression), 람다 함수(Lambda function)
 
 C++ 11 표준에서 만들어진 것으로 다른 곳에 전달될 수 있는 함수 개체입니다. 람다 표현은 익명 함수라고도 하며 보통 다른 함수의 인자로 사용됩니다.
@@ -531,7 +554,7 @@ C++ 11 표준에서 만들어진 것으로 다른 곳에 전달될 수 있는 �
 
 표현 구문은 다음과 같습니다.
 
-<img src= https://learn.microsoft.com/ko-kr/cpp/cpp/media/lambdaexpsyntax.png width="50%" height="50%" title="함수 호출" alt="함수 호출"></img>
+<img src= https://learn.microsoft.com/ko-kr/cpp/cpp/media/lambdaexpsyntax.png width="50%" height="50%" title="람다 표현" alt="람다 표현"></img>
 
 1. 캡쳐 블록 (람다 소개자라고도 함) \
 캡쳐 블록은 람다에 호출되는 스코프 범위에서 존재하는 변수들을 캡쳐 할 수 있습니다. 대상을 값의 복사(call by value)로 캡쳐 할 것인지 참조(call by reference)로 캡쳐할 것인지 설정 할 수 있습니다. \
