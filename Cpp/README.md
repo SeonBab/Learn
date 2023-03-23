@@ -14,8 +14,9 @@
 + [함수](https://github.com/SeonBap/TIL/blob/main/Cpp/Function.md)
 + [포인터](https://github.com/SeonBap/TIL/blob/main/Cpp/Pointer.md)
 
-# 참고 사이트
+# 참고
 
++ 게임캔버스
 + https://github.com/geunkim/CPPLectures
 + https://wikidocs.net/book/2380
 + https://learn.microsoft.com/ko-kr/cpp/cpp/?view=msvc-170
