@@ -40,3 +40,4 @@
 + [2차원으로 만들기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/2차원으로_만들기.md)
 + [공 던지기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/공_던지기.md)
 + [배열 회전시키기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_회전시키기.md)
++ [합성수 찾기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/합성수_찾기.md)
