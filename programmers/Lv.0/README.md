@@ -42,3 +42,4 @@
 + [배열 회전시키기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/배열_회전시키기.md)
 + [합성수 찾기](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/합성수_찾기.md)
 + [최댓값 만들기 1](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/최댓값_만들기_1.md)
++ [팩토리얼](https://github.com/SeonBap/TIL/blob/main/programmers/Lv.0/팩토리얼.md)
