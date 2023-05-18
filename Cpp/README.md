@@ -17,9 +17,11 @@
 # 참고
 
 + 게임캔버스
-+ https://github.com/geunkim/CPPLectures
-+ https://wikidocs.net/book/2380
-+ https://learn.microsoft.com/ko-kr/cpp/cpp/?view=msvc-170
-+ https://cplusplus.com/
-+ http://www.tcpschool.com/cpp/intro
-+ https://boycoding.tistory.com/category
++ [TCPSCHOOL.com](http://www.tcpschool.com/cpp/intro)
++ [마이크로소프트 C++ 언어 참조](https://learn.microsoft.com/ko-kr/cpp/cpp/?view=msvc-170)
++ [cplusplus](https://cplusplus.com/)
++ [cppreference.com](https://en.cppreference.com/w/)
++ [LEARN C++](https://www.learncpp.com/)
++ [Geun-Hyung Kim님](https://github.com/geunkim/CPPLectures)
++ [SEADOG](https://wikidocs.net/book/2380)
++ [소년코딩](https://boycoding.tistory.com/24)
