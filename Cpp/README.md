@@ -14,7 +14,7 @@
 + [함수](https://github.com/SeonBap/TIL/blob/main/Cpp/Function.md)
 + [포인터](https://github.com/SeonBap/TIL/blob/main/Cpp/Pointer.md)
 + [구조체](https://github.com/SeonBap/TIL/blob/main/Cpp/Structure_Type.md)
-+ [클래스]()
++ [클래스](https://github.com/SeonBap/TIL/blob/main/Cpp/Class.md)
 + [메모리 관리]()
 + [자료 구조]()
 
