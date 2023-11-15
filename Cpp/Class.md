@@ -24,6 +24,7 @@ class Rect
     public:
     int width;      // 멤버 변수 선언
     int height;
+
     int getArea();  // 멤버 함수 선언
 };
 ```
@@ -65,15 +66,19 @@ private 접근 지정자를 갖는 멤버 변수, 멤버 함수는 클래스 외
 클래스는 기본적으로 모든 멤버 변수와 멤버 함수는 private 접근 지정자를 가진다.
 
 ```
+#include <iostream>
+using namespace std;
+
 class Rect
 {
   int width;    // private 멤버 변수
 private:
   int height;   // private 멤버 변수 
+
 public:
   Rect(int w = 2, int h = 2) : width(w), height(h)  // public 멤버 함수
   int getArea() { return width * height; }          // public 멤버 함수
- };
+};
  
 int main()
 {
@@ -113,6 +118,7 @@ class Shape
 {
 protected:
   int pointX, pointY;   // protected 멤버 변수
+
 public:
   Shape(int x = 2, int y = 2) : pointX(x), pointY(y) {}
   void printPoint() { cout <<"point: " << pointX << ", " << pointY << endl; } 
@@ -122,10 +128,11 @@ class Rect : public Shape     // Shape 클래스를 상속받는 Rect 클래스
 {
 private:
     int width, height;
+
 public:
  	Rect(int w, int h) : width(w), height(h) {}
  	void printEndpoint()
-    {
+  {
  		cout <<"Rect: " << pointX + width << ", " << pointY + height << endl;
  	}
 };
@@ -135,3 +142,120 @@ public:
 
 # 생성자(Constructor)
 
+클래스에는 인스턴트화 될 때 자동으로 호출되는 생성자라는 특수한 멤버 함수를 가진다. \
+일반적으로 생성자를 통해 클래스가 사용되기 전에 수행하여야 할 기능 예로 멤버 변수 초기화, 동적 메모리 할당 등을 수행한다.
+
+생성자는 다음과 같은 특징을 가진다.
+
++ 생성자는 함수이다.
++ 클래스가 인스턴스화 될 때 반드시 하나의 생성자가 호출되어야 한다.
++ 생성자는 클래스가 인스턴스화 될 때 호출되는 함수로 객체가 생성될 때 필요한 초기 작업을 한다.
++ 클래스 인스턴스화 시 생성자는 오직 한번만 자동으로 실행한다.
++ 일반 멤버 함수인 것처럼 명시적으로 호출 할 수 없다.
++ 생성자의 이름은 클래스 이름과 동일해야한다.
++ 아무것도 리턴하지 않으며 void도 아니다.
++ 오버로딩이 가능해 한 클래스에서 여러개의 생성자를 만들 수 있다.
++ 함수이므로 디폴트 매개변수를 가질 수 있다.
++ 선언되지 않으면 컴파일러가 inline 기본 생성자(default constructor)를 자동으로 생성한다.
++ 매개변수가 있는 생성자를 선언하는 경우 컴파일러는 기본 생성자를 자동으로 생성하지 않는다.
+
+생성자는 클래스 정의 또는 상속 계층 구조의 외부의 코드가 클래스의 객체를 만들 수 있도록 일반적으로 public 접근성을 가지나 private 또는 protected 접근성을 가지도록 선언할 수 있다.
+
+정의하는 구문은 다음과 같다.
+```
+class이름::class이름(인수 목록)
+{
+  ....
+}
+
+class Rect
+{
+  Rect();             // 기본 생성자
+  Rect(int w);        // 생성자 오버로드 (매개변수 한 개)
+  Rect(int w, int h); // 생성자 오버로드 (매개변수 두 개)
+  ...
+};
+```
+
+### 기본 생성자(default constructor)
+
+기본 생성자는 매개 변수가 없는 생성자를 말한다. 다만, 매개 변수만 없을 뿐 수동으로 기능을 구현 할 수 있다. \
+생성자가 하나도 선언되지 않은 클래스의 경우 컴파일러가 기본 생성자를 자동으로 생성한다. 컴파일러가 생성한 기본 생성자는 아무 코드도 실행되지 않고 바로 리턴한다. \
+인스턴스화 시 초기값을 제공하지 않으면 기본 생성자가 호출된다.
+
+
+```
+#include <iostream>
+using namespace std;
+
+class Person
+{
+private:
+  string name;
+  int age;
+
+public:
+  void setName(string n) { name = n;}
+  void setAge(int a) { age = a;}
+  void show()
+  {
+    cout << name << ", " << age << endl;
+  }
+};
+
+int main()
+{
+   Person s;  // 컴파일러가 자동 생성한 기본 생성자 Person() 호출 
+   s.setName("Seonguk Kim");
+   s.setAge(25);
+   s.show();
+
+   return 0;
+}
+```
+
+실행 결과는 다음과 같다. `Seonguk Kim, 25`
+
+앞의 코드의 main 함수를 다음과 같이 수정하여 얻은 실행 파일을 실행하였을 때 결과를 생각해보자
+
+```
+int main()
+{
+	Person man;
+	man.show();
+
+	return 0;
+}
+```
+
+결과의 값은 임의의 값이 출력될 것이다. 클래스가 인스턴스화 되고 데이터를 저장할 수 있는 메모리 저장 공간이 할당 되었으나 저장 공간이 초기화 되지 않아 쓰레기 값을 가지고 있기에 나온 결과이다.
+
+컴파일러가 기본 생성자를 생성하지 못하도록 다음과 같이 `person() = delete;`로 컴파일러에서 생성된 기본 생성자를 삭제되도록 명시적으로 정의 할 수 있다.
+
+```
+class Person
+{
+private:
+   string name;
+   int age;
+
+public:
+   Person() = delete; // 컴파일러의 기본 생성자 생성을 하지 않도록 함 
+   void setName(string n) { name = n;}
+   void setAge(int a) { age = a;}
+   void show()
+   {
+      cout << name << ", " << age << endl;
+   }
+};
+
+int main()
+{
+	Person man;
+	man.show();
+
+	return 0;
+}
+```
+
+하지만 위와 같은 경우에선 기본 생성자를 생성하지 않았고, main 함수에서 클래스를 기본 생성자를 활용해 인스턴스화 하려 하므로 에러가 날 것 이다.
