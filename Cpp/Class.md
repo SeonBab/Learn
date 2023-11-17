@@ -66,9 +66,6 @@ private 접근 지정자를 갖는 멤버 변수, 멤버 함수는 클래스 외
 클래스는 기본적으로 모든 멤버 변수와 멤버 함수는 private 접근 지정자를 가진다.
 
 ```
-#include <iostream>
-using namespace std;
-
 class Rect
 {
   int width;    // private 멤버 변수
@@ -76,8 +73,8 @@ private:
   int height;   // private 멤버 변수 
 
 public:
-  Rect(int w = 2, int h = 2) : width(w), height(h)  // public 멤버 함수
-  int getArea() { return width * height; }          // public 멤버 함수
+  Rect(int w = 2, int h = 2) : width(w), height(h) {} // public 멤버 함수
+  int getArea() { return width * height; }            // public 멤버 함수
 };
  
 int main()
@@ -183,7 +180,6 @@ class Rect
 생성자가 하나도 선언되지 않은 클래스의 경우 컴파일러가 기본 생성자를 자동으로 생성한다. 컴파일러가 생성한 기본 생성자는 아무 코드도 실행되지 않고 바로 리턴한다. \
 인스턴스화 시 초기값을 제공하지 않으면 기본 생성자가 호출된다.
 
-
 ```
 #include <iostream>
 using namespace std;
@@ -230,6 +226,44 @@ int main()
 
 결과의 값은 임의의 값이 출력될 것이다. 클래스가 인스턴스화 되고 데이터를 저장할 수 있는 메모리 저장 공간이 할당 되었으나 저장 공간이 초기화 되지 않아 쓰레기 값을 가지고 있기에 나온 결과이다.
 
+기본 생성자를 다음과 같이 수동으로 사용 할 수 있다.
+
+```
+class Person
+{
+private:
+  string name;
+  int age;
+
+public:
+  Person()  // 기본 생성자
+  {
+    name = "Seonguk Kim";
+    age = 25;
+  }
+};
+```
+
+사용자가 정의한 기본 생성자가 호출되고 정의된 기본 생성자에 따라 값이 할당 됐다. 그렇기에 다음과 같은 실행 결과가 나올 것이다. `Seonguk Kim, 25`
+
+혹은 다음과 같은 방법으로 기본 생성자에서 하나 혹은 두 개의 사용자 제공 값을 허용할 수 있다.
+
+```
+class Person
+{
+private:
+  string name;
+  int age;
+
+public:
+  Person(string str = "Seonguk Kim", int num = 25)  // 기본 생성자
+  {
+    name = str;
+    age = num;
+  }
+};
+```
+
 컴파일러가 기본 생성자를 생성하지 못하도록 다음과 같이 `person() = delete;`로 컴파일러에서 생성된 기본 생성자를 삭제되도록 명시적으로 정의 할 수 있다.
 
 ```
@@ -258,4 +292,117 @@ int main()
 }
 ```
 
-하지만 위와 같은 경우에선 기본 생성자를 생성하지 않았고, main 함수에서 클래스를 기본 생성자를 활용해 인스턴스화 하려 하므로 에러가 날 것 이다.
+하지만 위의 경우에선 기본 생성자를 생성하지 않았고, main 함수에서 클래스를 기본 생성자를 활용해 인스턴스화 하려 하므로 에러가 날 것이다.
+
+### 멤버 초기화 리스트(Constructor member initializer list)
+
+멤버 초기화 리스트는 객체의 생성 후 값을 대입하는 것이 아닌, 객체의 생성과 동시에 값을 지정할 수 있게 한다. 이 방법은 direct initialization이나 uniform initialization으로 초기화 하는 것과 거의 동일하다.
+
+초기화 리스트가 멤버 변수 초기화 기능을 대체하므로 더는 생성자 본문에서 수행할 필요가 없어진다.
+
+const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있는 유일한 방법이다.
+
+```
+Person(string n, int a) : name {n}, age {a} {}
+```
+
+# 복사 생성자 (Copy constructor)
+
+복사 생성자는 동일한 자료형의 객체가 가진 멤버 변수의 값을 복사하여 객체를 초기화 한다. 즉 선언되는 객체와 같은 자료형을 가진 객체의 복사가 필요할 때 사용되는 생성자이다. \
+클래스의 멤버 변수가 값을 저장하는 간단한 형태라면 컴파일러에서 생성하는 디폴트 복사 생성자(default copy constructor)로 충분하여 사용자가 직접 복사 생성자를 정의할 필요는 없으나 객체 복사 시 복잡한 초기화가 필요한 경우 사용자 정의 복사 생성자를 정의하여야 한다.
+
+복사 생성자를 정의하는 구문은 다음 중 하나이다.
+```
+<클래스 이름>(<클래스 이름>& <변수 이름>);
+<클래스 이름>(const <클래스 이름>& <변수 이름>);
+<클래스 이름>(volatile <클래스 이름>& <변수 이름>);
+<클래스 이름>(volatile const <클래스 이름>& <변수 이름>);
+
+<클래스 이름>(<클래스 이름>& <변수 이름>, ...기본 값들...);
+```
+
+입력 파라미터의 `const` 키워드는 복사하려는 원본의 값을 함수 내에서 변경시키지 않도록 한다. \
+`volatile`키워드는 사용하여 선언된 변수는 프로그램 실행 중 외부적인 요인으로 메모리에 저장된 값이 언제든 바뀔 수 있는 변수라는 것으로 컴파일러에게 알리기 위한 키워드이다. 컴파일러는 `volatile`로 선언된 변수에 대해서 최적화하지 않는다. `volatile` 변수를 참조할 경우 CPU레지스터에 로드된 값을 사용하지 않고 매번 메모리를 참조한다. 
+
++ MMIO(Memory-mapped I/O): I/O 디바이스가 메모리 주소에 매핑된 I/O
++ 인터럽트 서비스 루틴 사용
++ 멀티 스레드 환경
+
+인터럽트 서비스 루틴과 멀티 스레드 프로그램 작성 시 서로 공유해야 하는 전역 변수의 경우 컴파일러가 코드를 최적화하지 않고 순차적으로 모두 수행하도록 하여야 하는 경우 `volatile`을 사용한다.
+
+```
+class Person
+{
+private:
+  string name;
+  int age;
+
+public:
+  Person(string name, int age)  // 생성자
+  {
+    this->name = name;
+    this->age = age;
+  }
+
+  Person(const Person &ref) // 복사 생성자
+  {
+    cout << "User defined Copy constructor" << endl;     
+    name = ref.name;
+    age = ref.age;
+  }
+
+  void show()
+  {
+    cout << name << ", " << age << endl;
+  }
+};
+```
+
+### 묵시적 변환
+
+# 소멸자
+
+객체가 소멸되면 객체에 할당된 메모리는 반환된다. 소멸자는 객체가 소멸되는 시점에 반드시 자동으로 호출되는 클래스의 멤버 함수이다.
+
+클래스의 멤버 변수들이 단순하게 기본 자료형이 값 형식이라면 크게 필요 없지만 다른 리소스(동적 메모리, 파일 또는 데이터베이스 핸들러)라면 객체가 소멸되기 전에 어떤 종류의 유지보수를 해야하며, 이때 소멸자는 객체가 소멸되기 전 마지막으로 호출되는 함수이므로 완벽한장소가 된다.
+
++ 소멸자는 함수이다.
++ 소멸자는 객체가 사라질 때 필요한 마무리 작업을 하게 된다.
++ 소멸자의 이름은 클래스 이름 앞에 ~를 붙인다.
++ 소멸자는 반환 자료형이 없으며 아무것도 반환하지 않는다.
++ 오직 한개만 존재하고 매개 변수는 가질 수 없다.
++ 소멸자가 선언되어 있지 않으면 컴파일러가 기본 소멸자(default destructor)를 자동으로 생성한다.
+
+```
+class이름::~class이름(인수 목록)
+{
+  ....
+}
+
+class Rect
+{
+private:
+  int width, height;
+
+public:
+  Rect(int w = 1, int h = 2) : width {w}, height {h} {}
+  ~Rect();
+  int getArea() { return width * height; }  // 멤버 함수 정의
+};
+
+Rect::~Rect()
+{
+  cout << "소멸자 호출" << endl;
+}
+
+int main()
+{
+  Rect s;  // 컴파일러가 자동 생성한 기본 생성자 호출 
+  
+  int Area = s.getArea();
+
+  return 0;
+}
+```
+
+`main`함수에서 `int Area`가 복사 초기화 된 후 `main`함수가 종료되면서 객체 `s`의 소멸자가 호출된다.
