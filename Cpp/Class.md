@@ -387,7 +387,18 @@ public:
 임시객체를 소멸되지 않게 하고자 한다면 생성된 위치에 임시객체의 참조 값이 반환되는 것을 이용해야 한다. \
 객체를 저장하지 않더라도 반환된 위치에 존재하는 참조값을 참조자가 참조하면 객체가 소멸하지 않는다.
 
-### 이동 생성자(Move Constructor)
+# 복사 대입 연산자(Copy Assign Operator)
+
+복사 대입 연산자는 객체를 대입할 때 호출되는 연산자다.
+
+복사 생성자와 복사 대입 연산자가 헷갈릴 수 있는데 `Person kim = man;`문장은 복사 생성자가 호출되지만, `Person kim; kim = man`은 기본 생성자가 호출된 후, 복사 대입 연산자가 호출된다.
+
+함수 정의는 다음과 같다.
+```
+Person& operator=(const Person& other);
+```
+
+# 이동 생성자(Move Constructor)
 
 C++11에 Rvalue reference를 파라미터로 가지는 새로운 타입의 생성자가 추가되었다. 함수 호출 시 임시 개체(rvalue)에 대한 복사가 너무 많이 일어나 해결하기 위해 추가됐다.
 이동 생성자는 얕은 복사를 하고, 기존 객체의 데이터 소유권을 새 변수에 이동하는 멤버 함수다. 이 과정에서 원본 객체는 NULL로 초기화해 접근할 수 없게 만든다.\
@@ -424,6 +435,40 @@ Person::Person(Person&& other) : name {std::move(other.name)}, age {other.age}, 
     other.name = "";
     other.age = 0;
     other.weight = nullptr;
+}
+```
+
+# 이동 대입 연산자
+
+이동 생성자와 같은 개념이다.
+
+구문은 다음과 같다.
+
+```
+<클래스 이름>& <클래스 이름>::operator=(<클래스 이름>&& <변수 이름>);
+
+Person& Person::operator=(Person&& other);
+```
+
+```
+class Person
+{
+public:
+  string name;
+  int age;
+  float* weight;
+
+public:
+  Person& operator=(Person&& other);
+}
+
+Person& Person::operator=(Person&& other) : name {std::move(other.name)}, age {other.age}, weight {other.weight}
+{
+    other.name = "";
+    other.age = 0;
+    other.weight = nullptr;
+
+    return *this;
 }
 ```
 
