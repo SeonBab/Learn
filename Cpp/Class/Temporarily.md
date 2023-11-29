@@ -1,142 +1,3 @@
-# 클래스(Class)
-
-일상에서의 객체를 프로그램 코드로 표현하기 위한 사용자 정의 자료형이다. C++ 언어의 객체는 자신만의 고유한 상태(state) 정보를 저장하고 있는 멤버 변수(속성)와 객체의 행동(behavior)에 해당하는 멤버 함수(기능)로 구성된다. 행동으로 객체의 상태가 변화하거나 객체의 상태가 외부로 전달되기도 한다.
-
-클래스는 C의 구조체에서 확장된 C++ 구조체의 또다른 이름이라고 볼 수 도 있다. 클래스는 함수를 포함 할 수 있으며, 기본 접근 제한자에 차이가 있을 뿐 거의 같다. \
-클래스와 구조체가 동일한 기능을 하면서 존재하는 이유는 C++에서 C와의 하위 호환성을 위해 남겨졌다고 볼 수 있다.
-
-
-# 클래스 선언과 정의
-
-```
-class 클래스이름 // 클래스 이름의 자료형을 정의
-{
-    접근지정자:
-    멤버 변수 선언1; // 객체의 상태 또는 특성에 해당하는 변수 "자료형 변수이름"의 형태로 선언
-    멤버 변수 선언2;
-    ...
-
-    멤버 함수 선언1; // 객체의 기능에 해당하는 함수 "반환자료형 함수이름(인수 리스트)"의 형태로 선언
-}; // 세미콜론(;)으로 끝내야한다.
-
-class Rect
-{
-    public:
-    int width;      // 멤버 변수 선언
-    int height;
-
-    int getArea();  // 멤버 함수 선언
-};
-```
-
-멤버 함수의 경우 클래스 정의 내 정의되거나 클래스 정의 밖에서 정의할 수 있다.멤버 함수를 클래스 정의 밖에서 정의하는 구문은 다음과 같다.
-
-```
-반환자료형 클래스이름::함수이름(인수리스트) // 멤버 함수 정의
-{
-    ...
-}
-
-int Rect::getArea()
-{
-    return width * height;
-}
-```
-
-클래서 정의 영역 내부에서 getArea() 함수의 정의는 다음과 같다.
-```
-class Rect
-{
-    public:
-    int width, height;
-    int getArea() { return width * height; }  // 멤버 함수 정의
-};
-```
-
-멤버 함수를 클래스 정의 영역 내부에 정의할 경우 간결해 보일 수 있으나 멤버 함수의 개수가 많은 경우 클래스의 전체 구조를 한 눈에 파악하기 어렵다. 그러므로 가능하면 클래스의 정의와 멤버 함수의 정의를 분리하여 표현하는 것이 일반적이다.
-
-클래스의 멤버 변수와 멤버 함수는 멤버 선택 연산자(.)를 사용해 접근 할 수 있다.
-
-# 접근지정자(Access specifiers)
-
-C++의 접근 지정자는 private, protected, public의 세 가지 접근 지정 키워드가 있다. 이 접근지정자는 C++의 데이터 캡슐화와 관련이 있다.
-
-private 접근 지정자를 갖는 멤버 변수, 멤버 함수는 클래스 외부에서 접근이 불가능한 것으로 클래스 내부의 멤버 함수에 의해서만 접근이 가능하다.
-
-클래스는 기본적으로 모든 멤버 변수와 멤버 함수는 private 접근 지정자를 가진다.
-
-```
-class Rect
-{
-  int width;    // private 멤버 변수
-private:
-  int height;   // private 멤버 변수 
-
-public:
-  Rect(int w = 2, int h = 2) : width(w), height(h) {} // public 멤버 함수
-  int getArea() { return width * height; }            // public 멤버 함수
-};
- 
-int main()
-{
-  Rect rectangle;
-  rectangle.width = 5;  // 접근 오류
-  rectangle.height = 4; // 접근 오류
-  
-  cout << "Width: " << rectangle.width<< endl;  // 접근 오류
-  cout << "Area: " << rectangle.getArea() << endl; 
-
-  return 0;
-}
-```
-
-컴파일하면 다음과 같이 세 곳에서 에러가 발생한다.
-
-```
-error: 'width' is a private member of 'Rect'
-  rectangle.width = 5;                          // 접근 오류
-            ^
-error: 'height' is a private member of 'Rect'
-  rectangle.height = 4;                         // 접근 오류
-            ^
-error: 'width' is a private member of 'Rect'
-  cout << "Width: " << rectangle.width<< endl;  // 접근 오류
-```
-
-반면 public은 접근 지정자를 갖는 멤버 변수와 멤버 함수는 클래스 외부에서 접근이 가능하다.
-
-그렇기에 위에 예시에서 `cout << "Area: " << rectangle.getArea() << endl;`는 컴파일 에러가 발생하지 않고 멤버 함수에 접근이 가능하다.
-
-protected는 private 접근 지정자와 비슷하게 클래스 외부에서는 protected 멤버에 접근하지 못하나 상속을 받는 자식 클래스 내부의 멤버들은 접근이 가능하다. 이 접근 지정자는 상속 관계에서만 의미를 가진다. \
-private 접근 지정자로 지정된 멤버는 상속 받은 자식 클래스 내부에서도 접근이 불가능하다.
-
-```
-class Shape
-{
-protected:
-  int pointX, pointY;   // protected 멤버 변수
-
-public:
-  Shape(int x = 2, int y = 2) : pointX(x), pointY(y) {}
-  void printPoint() { cout <<"point: " << pointX << ", " << pointY << endl; } 
-};
- 
-class Rect : public Shape     // Shape 클래스를 상속받는 Rect 클래스 
-{
-private:
-    int width, height;
-
-public:
- 	Rect(int w, int h) : width(w), height(h) {}
- 	void printEndpoint()
-  {
- 		cout <<"Rect: " << pointX + width << ", " << pointY + height << endl;
- 	}
-};
-```
-
-부모 클래스의 pointX, pointY 멤버 변수가 protected 접근 지정자로 지정되어 있으므로 상속받은 Rect 클래스의 멤버 함수에서 접근 할 수 있다.
-
 # 생성자(Constructor)
 
 클래스에는 인스턴트화 될 때 자동으로 호출되는 생성자라는 특수한 멤버 함수를 가진다. \
@@ -293,18 +154,6 @@ int main()
 ```
 
 하지만 위의 경우에선 기본 생성자를 생성하지 않았고, main 함수에서 클래스를 기본 생성자를 활용해 인스턴스화 하려 하므로 에러가 날 것이다.
-
-### 멤버 초기화 리스트(Constructor Member Initializer List)
-
-멤버 초기화 리스트는 객체의 생성 후 값을 대입하는 것이 아닌, 객체의 생성과 동시에 값을 지정할 수 있게 한다. 이 방법은 direct initialization이나 uniform initialization으로 초기화 하는 것과 거의 동일하다.
-
-초기화 리스트가 멤버 변수 초기화 기능을 대체하므로 더는 생성자 본문에서 수행할 필요가 없어진다.
-
-const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있는 유일한 방법이다.
-
-```
-Person(string n, int a) : name {n}, age {a} {}
-```
 
 # 복사 생성자 (Copy Constructor)
 
@@ -472,6 +321,18 @@ Person& Person::operator=(Person&& other) : name {std::move(other.name)}, age {o
 }
 ```
 
+### 멤버 초기화 리스트(Constructor Member Initializer List)
+
+멤버 초기화 리스트는 객체의 생성 후 값을 대입하는 것이 아닌, 객체의 생성과 동시에 값을 지정할 수 있게 한다. 이 방법은 direct initialization이나 uniform initialization으로 초기화 하는 것과 거의 동일하다.
+
+초기화 리스트가 멤버 변수 초기화 기능을 대체하므로 더는 생성자 본문에서 수행할 필요가 없어진다.
+
+const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있는 유일한 방법이다.
+
+```
+Person(string n, int a) : name {n}, age {a} {}
+```
+
 ### 묵시적 변환
 
 ```
@@ -502,189 +363,96 @@ explicit Person(const Person &other)  // 복사 생성자
 person(const person &other) = delete;
 ```
 
+# 프렌드(Friend)
 
-# 소멸자
+클래스의 private 및 protected 멤버는 선언된 클래스 외부에서 액세스 할 수 없지만 프렌드 키워드를 사용해 지정한 대상이 클래스 내의 모든 멤버를 접근 할 수 있도록 권한을 부여해 준다. \
+프렌드 키워드는 클래스, 멤버 함수, 전역 함수의 세 가지 형태로 사용할 수 있다.
 
-객체가 소멸되면 객체에 할당된 메모리는 반환된다. 소멸자는 객체가 소멸되는 시점에 반드시 자동으로 호출되는 클래스의 멤버 함수이다.
+다른 타입의 객체를 접근하는 것이 가능해져 코드의 확장이 수월해지지만 캡슐화 파괴의 주범이 되어 설계가 꼬여버릴 수 있다. \
+객체지향적 설계라고 보기 어렵다.
 
-클래스의 멤버 변수들이 단순하게 기본 자료형이 값 형식이라면 크게 필요 없지만 다른 리소스(동적 메모리, 파일 또는 데이터베이스 핸들러)라면 객체가 소멸되기 전에 어떤 종류의 유지보수를 해야하며, 이때 소멸자는 객체가 소멸되기 전 마지막으로 호출되는 함수이므로 완벽한장소가 된다.
+사용 시 주의사항으로는 다음과 같다.
++ 프렌드의 프렌드는 접근 권한이 없다.
++ 프렌드를 상속 받은 자식은 접근 권한이 없다.
 
-+ 소멸자는 함수이다.
-+ 소멸자는 객체가 사라질 때 필요한 마무리 작업을 하게 된다.
-+ 소멸자의 이름은 클래스 이름 앞에 ~를 붙인다.
-+ 소멸자는 반환 자료형이 없으며 아무것도 반환하지 않는다.
-+ 오직 한개만 존재하고 매개 변수는 가질 수 없다.
-+ 소멸자가 선언되어 있지 않으면 컴파일러가 기본 소멸자(default destructor)를 자동으로 생성한다.
+### 프렌드 함수
 
-```
-class이름::~class이름(인수 목록)
-{
-  ....
-}
+클래스의 멤버 함수와 같은 접근 권한을 가지는 전역 함수 또는 다른 클래스의 멤버 함수를 프렌즈 함수라 한다.
 
-class Rect
-{
-public:
-  int width, height;
+클래스 선언부에 원형이 포함되지만, 클래스의 멤버 함수는 아니고, 함수의 본체는 따로 정의된다.
 
-public:
-  Rect(int w = 1, int h = 2) : width {w}, height {h} {}
-  ~Rect();
-  int getArea() { return width * height; }  // 멤버 함수 정의
-};
-
-Rect::~Rect()
-{
-  cout << "소멸자 호출" << endl;
-}
-
-int main()
-{
-  Rect s;  // 컴파일러가 자동 생성한 기본 생성자 호출 
-  
-  int Area = s.getArea();
-
-  return 0;
-}
-```
-
-`main`함수에서 `int Area`가 복사 초기화 된 후 `main`함수가 종료되면서 객체 `s`의 소멸자가 호출된다.
-
-# 정적 클래스, 정적 맴버변수, 정적 멤버함수, 정적 상수
-
-### 정적 클래스
-
-클래스도 static 키워드는 클래스 객체에서도 똑같이 동작한다. static으로 선언된 객체 또한 정적 저장 영역에 저장되어 프로그램이 끝날 때까지 유지된다.
+프렌드 키워드를 사용한 선언은 다음과 같습니다.
 
 ```
-#include <iostream>
+// 전역 함수
+friend 반환자료형 함수이름(매개변수목록);
+
+// 다른 클래스의 멤버 함수
+friend 클래스이름 함수이름(매개변수목록);
 
 class Rect
 {
   int width, height;
 
-  public:
-  Rect()
-  {
-    std::cout << "constructor" << std::endl;
-  }
-
-  ~Rect()
-  {
-    std::cout << "destructor" << std::endl;
-  }
+  friend bool equals(Rect a, Rect b);
 }
 
-void abc()
+bool equals(Rect a, Rect b)
 {
-  static Rect object;
-}
-
-main()
-{
-  if (true)
-  {
-    abc();
-  }
-
-  std::cout << "END" << std::endl;
-  return 0;
+  return ((a.width == b.width) && (a.height == b.height));
 }
 ```
 
-```
-Output : 
-constructor
-END
-destructor
-```
+선언은 클래스 내의 어디에서든 가능하다.
 
-if문이 끝날 때 소멸자가 호출되지 않고 main()함수가 끝나 프로그램이 끝날 때 소멸자가 호출 된다.
+### 프렌드 클래스
 
-### 정적 멤버변수
-
-클래스로부터 객체가 생성되면 선언된 일반적인 멤버는 "객체 단위의 멤버"로 객체들 마다 각기 다른 값을 가질 수 있는 독립된 변수지만, 정적 멤버 변수는 객체마다 독립적으로 변수가 선언되는 것이 아니라 클래스에 하나의 변수만 할당되고 생성된 객체들의 정적 멤버는 할당된 저장공간을 공유한다.
-
-정적 멤버 변수는 모든 객체가 공유해야 하므로 프로그램 전체 영역에서 메모리가 유지되야 하고, 따라서 전역 범위에서 정의 및 초기화를 해주어야 한다. \
-main 함수는 물론 생성자 안에서도 초기화 할 수 없다.
-
-정적 멤버 변수는 클래스 내에서 선언만이 가능하며 정의는 불가능하다.
-
-헤더 파일과 .cpp 파일로 분리할 때, 정적 멤버변수는 반드시.cpp파일에서 초기화해야한다. 여러 곳에서 헤더 파일을 include할 때 마다 여러번 정의 및 초기화 하는게 될테니 헤더 파일에선 불가능하다.
+프렌드 키워드를 사용한 선언은 다음과 같습니다.
 
 ```
-자료형이름 클래스이름::정적멤버변수이름 = 초기화 할 값
+friend 클래스이름;
+
+friend class 클래스이름;
 ```
 
-private 접근 지정자를 통해 선언된 정적 멤버변수도 클래스 외부에서 정의가 가능하다.
-
-
-다음 코드는 정적 멤버 변수를 가지는 예이다.
+첫번째 선언은 클래스가 이미 선언되었을 때 사용 할 수 있으며 템플릿 형식 매개변수 또는 typedef friend로 선언할 때 사용해야 한다.
 
 ```
-class Rect
+// 이미 선언된 클래스를 참조
+class RectA {};
+
+class My_ClassA
 {
-  int width, height;
-  static int count;
-
-public:
-  Rect() {count++;}
-  ~Rect() {count--;}
-  int getNum() {return count;}
+  friend Rect;  
 };
 
-int Rect::count = 0;
-
-int main()
-{			  // 지역범위 1
-	Rect r1, r2;
-
-	cout << "(1)# of Rect: " << r1.getNum() << endl;
-
-	{         // 지역범위 2
-		Rect r3;  // 지역범위 2에서 유효한 객체 (r1, r2, r3)
-		cout << "(2)# of Rect: " << r3.getNum() << endl;
-	}
-
-	// 지역범위 1에서 유효한 객체 (r1, r2)
-	cout << "(3)# of Rect: " << r2.getNum() << endl;
-	
-	return 0;
-}
-```
-
-위의 프로그램은 main함수(지역범위1) 내에 지역범위2가 존재하는 경우를 보인다. 지역범위1에서 클래스 객체 2개가 생성되고, 지역범위2에서 클래스 객체가 1개 생성됐다. 지역범위 2에서만 유요한 객체는 영역을 벗어나면서 소멸자를 호출해 객체는 사라지게 되었다. 그러므로 실행 결과는 다음과 같다.
-
-```
-(1)# of Rect: 2
-(2)# of Rect: 3
-(3)# of Rect: 2
-```
-
-### 정적 멤버함수
-
-멤버함수도 정적 멤버함수로 선언 할 수 있다. \
-특정 객체에 종속되지 않는 것으로 객체를 생성하지 않고도 호출이 가능하다. 이 경우 객체가 생성되지 않았기 때문에 클래스 이름을 직접 사용한다. 이때 public 접근지정자를 통해 선언되면 접근이 가능해 사용 할 수 있다. \
-정적 멤버함수의 특성은 정적 멤버변수의 특성과 같다. \
-정적 멤버함수는 객체의 멤버로 존재하는 것이 아니다.
-
-```
-class Rect
+// 템플릿 매개 변수를 프렌드로 선언하는 데 사용
+template <typename T>
+class My_ClassB
 {
-	int width, height;
-	static int num;                        // 정적 멤버변수
+    friend T; 
+};
 
-public:
-	Rect() {num++;}
-	~Rect() {num--;}
-	static int getNum() {return num;}      // 정적 멤버함수
-	static int getWidth() {return width;}  // 정적 멤버함수 (접근 오류) 
+// typedef를 프렌드로 선언하는 데 사용
+class RectB {};
+typedef RectB Z;
+
+class My_ClassC
+{
+    friend Z; // OK
 };
 ```
 
-위의 프로그램은 두개의 정적 멤버함수가 정의되어 있다. 이 중 getNum() 멤버함수는 정적 멤버변수인 num의 값을 참조하기에 오류가 발생하지 않는다. 그런데 getWidth 멤버함수는 일반 멤버변수인 width 값을 참조한다. 이 경우 객체가 생성되지 않아도 호출 될 수 있어 접근하는 것이 가능하지 않다 그러므로 정적 멤버함수의 정의에서 컴파일 에러가 발생한다. 즉 정적 멤버함수 내에서는 정적 멤버변수와 정적 멤버함수만 호출 할 수 있다.
+두번째 선언은 참조된 형식이 이미 선언되어 있지 않은 경우 사용한다.
 
-### 정적 상수
+```
+class My_ClassD
+{
+  friend class Rect;
+};
+```
 
-정적 멤버변수로 선언하면 클래스의 모든 객체에서 공유하여 객체별 저장 공간을 별도로 선언하지 않기 때문에 메모리를 절약할 수 있다. \
-정적 상수는 'const static'으로 선언하며 초기화 한 후 값을 변경하는 것이 불가능 하기에 선언과 동시에 초기화가 가능하다. 즉 클래스 내에서 초기화가 가능하며 헤더파일 내에서도 초기화가 가능하다.
+# 상속(Inheritance)
+
+
+
