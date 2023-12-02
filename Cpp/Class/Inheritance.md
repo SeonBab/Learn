@@ -13,7 +13,7 @@
 파생 클래스는 다음 구문을 사용하여 선언된다.
 
 ```
-class 클래스이름 : 접근지정자 부모클래스이름
+class 클래스이름 : [접근지정자] 부모클래스이름
 {
     멤버 리스트
     ...
@@ -90,4 +90,78 @@ class PaperbackBook : public Book {};
         <td>private</td>
     </tr>
 </table>
+
+### 다중 상속(Multiple Inheritance)
+
+다중 상속은 말 그대로 둘 이상의 클래스를 동시에 상속하는 것을 말한다. \
+즉 하나의 파생 클래스가 두 개 이상의 기본 클래스를 가지고 상속하는 것을 말한다.
+
+다음 구문을 사용하여 선언된다.
+
+```
+class 클래스이름 : [접근지정자] 부모클래스이름, [접근지정자] 부모클래스이름, ...
+{
+    멤버 리스트
+    ...
+}
+```
+```
+class Queue {};
+
+class CashierQueue : public Queue {};
+
+class LunchQueue : public Queue {};
+
+class LunchCashierQueue : public CashierQueue, public LunchQueue {};
+```
+
+![multiple_inheritance](https://learn.microsoft.com/ko-kr/cpp/cpp/media/vc38xp1.gif?view=msvc-170)
+
+`CashierQueue`와 `LunchQueue`는 `Queue`의 파생 클래스다. 이 파생 클래스들이 기본 클래스가 되어 하나의 파생 클래스인 `LunchCashierQueue`를 형성한다.
+
+다중 상속은 이해해야하고 꼭 필요한 경우 사용해야하는데 다중 상속에는 문제점이 존재한다. \
+예를 들면 각각의 다른 기본 클래스에 같은 이름의 함수가 있다면 어느 함수를 호출할지 모르는 모호성이 발생합니다. 이 경우 범위 지정 연산자로 해결 할 수 있다. \
+다이아몬드 상속 즉 위와 같은 이미지 일 때 `Queue`가 두번 상속되는 문제가 있다. 이 경우 가상 상속을 통해 해결 할 수 있다.
+
+다중 상속은 객체가 생성 될 때 상속 받은 기본 클래스의 생성자를 각각 하나씩 호출한다.
+
+### 가상 상속 (Virtual Inheritance)
+
+위와 같은 다이아몬드 상속의 구조같은 경우 멤버의 중복과 생성자의 호출로 메모리 낭비를 가져올 수 있다. 이런 경우가 꼭 다이아몬드 구조에서만 발생하는 것은 아니며, 다중 상속에선 충분히 발생 할 수 있는 문제다. 이런 모호성 문제와 메모리 낭비를 해결 할 수 있는 방법이 바로 가상 상속이다.
+
+가상 상속은 다음과 같은 방법으로 사용한다.
+```
+class 클래스이름 : [접근지정자] 부모클래스이름
+{
+    멤버 리스트
+    ...
+}
+```
+
+```
+class Queue {};
+
+class CashierQueue : virtual public Queue {};
+
+class LunchQueue : virtual public Queue {};
+
+class LunchCashierQueue : public CashierQueue, public LunchQueue {};
+```
+
+`Queue`를 상속 받을 때 `virtual` 키워드를 추가한 것이다. \
+이와 같은 방법으로 상속을 할 경우 기본 클래스를 가상 기본 클래스(Virtual Base Class)라고 한다. \
+가상 기본 클래스는 여러 번 상속되더라도 메모리 구조상 하나만 존재하게 되고, 모호성 문제로 인한 컴파일 에러가 발생하지 않게 된다. \
+그러나 클래스에 `virtual` 키워드를 적용 한 것 과 적용하지 않은 파생 클래스 2개를 상속 받는다면 가상 기본 클래스와 기본 클래스로 메모리가 각각 생성된다. 그러므로 중복 제거의 효과가 사라진다.
+
+가상 상속된 가상 기본 클래스는 생성자가 여러번 호출 되지 않고 한번만 호출하게된다. \
+예로 위의 경우 `Queue`가 가상 기본 클래스가 아니라면 `CashierQueue`와 `LunchQueue`의 생성자가 호출 될 때 마다 호출되어야 하므로 `Queue`가 두번 호출되어야 한다. 하지만 가상 기본 클래스이므로 한번만 호출한다.
+가상 기본 클래스의 생성자가 최종 클래스의 생성자에서 호출 될 경우 중간 기본 클래스의 생성자에서 가상 기본 클래스의 생성자를 호출하지 않는다.
+
+### 가상 함수
+
+
+### 명시적 재정의
+
+
+### 추상적 클래스
 
