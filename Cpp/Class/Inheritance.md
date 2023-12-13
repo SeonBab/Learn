@@ -168,3 +168,102 @@ class LunchCashierQueue : public CashierQueue, public LunchQueue {};
 이 테이블에는 가상 기본 클래스의 오프셋 정보가 포함되어 있고, 최소한 두 개 이상의 항목을 가지게 된다.
 오프셋은 특정 위치를 기준으로 얼마나 떨어져있는가를 나타낸 것이다. 즉 클래스의 메모리 시작 주소가 특정 위치를 기준으로 얼마나 떨어져있는지다. 특정 위치의 기준은 가상 테이블의 메모리 위치가 기준이 된다.
 
+### 업캐스팅, 다운캐스팅 (Up Casting, Down Casting)
+
+객체지향에서 캐스팅이란 형변환을 의미한다.
+
+업캐스팅과 다운캐스팅은 상속 관계에 있는 객체에서만 일어난다. \
+다형성에 의해 서로의 객체 포인터가 다른 타입의 객체를 가리킬 수 있게 되고, 이를 활용해 코드 재사용성을 높일 수 있다.
+
+업 캐스팅(up casting)은 기본 클래스 포인터가 파생 클래스 객체를 가리키는 것이다.
+
+```
+class Base
+{
+public:
+    virtual void print()
+    {
+        std::cout << "Base" << std::endl;
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void print()
+    {
+        std::cout << "Derived" << std::endl;
+    }
+
+    void show()
+    {
+        std::cout << a << std::endl;
+    }
+
+private:
+    int a = 2;
+};
+
+int main()
+{
+    Derived drv1;
+
+    Base* pBase = &drv1;
+
+    pBase->print();
+    pBase->show(); // 오류
+}
+```
+
+업 캐스팅을 하게되면 기본 클래스에 정의된 멤버만 호출 할 수 있고, 파생 클래스의 기능을 사용할 수 가 없다. \
+위의 경우 `Base`클래스에 정의되지 않은 `show()`함수를 호출하려 해 오류가 발생한다. \
+오류가 발생한 코드를 지우고, 출력을 확인한다면 다음과 같을 것이다.
+
+```
+Derived
+```
+
+다운 캐스팅(down casting)은 파생 클래스 포인터가 기본 클래스 객체를 가리키는 것이다. \
+업 캐스팅 된 포인터를 원래 형으로 되돌려 주는 작업을 할 수 있다.
+
+```
+int main()
+{
+    Derived drv1;
+
+    Base* pBase = &drv1;
+
+    Derived* pDerived = pBase; // 오류
+    Derived* pDerived = (Derived*)pBase;
+
+    pDerived->print();
+    pDerived->show();
+}
+```
+
+다운 캐스팅은 업 캐스팅과 다르게 명시적 형변환을 해야한다. \
+위의 경우 `pBase`가 가진 주소값을 이용해 `pDerived`를 초기화려 하는데 암시적 형변환이 되지 않아 오류가 발생한다. \
+오류가 발생한 코드를 지우고, 출력을 확인한다면 다음과 같을 것이다.
+
+```
+Derived
+2
+```
+
+기본 클래스를 다운 캐스팅을 하게되면 기본 클래스에 없고 파생 클래스에만 존재하는 멤버들에게 접근하려고 할 때 에러 발생의 위험이 있다.
+
+```
+int main()
+{
+    Base base;
+
+    Derived* pDerived = (Derived*)&base;
+
+    pDerived->print();
+    pDerived->show(); // 문제가 될 수 있다.
+}
+```
+
+위의 경우 `Derived`클래스의 `show()`함수가 호출된다. 호출이 되고 함수가 실행되는 이유는 `Derived`클래스의 함수 주소를 찾아가 호출한 것이기 때문에 함수가 호출된다. \
+하지만 함수가 실행되며 `a`라는 변수의 값을 출력하고자 하는데 `a`라는 변수는 `Derived`클래스의 객체만 존재하고, `Base`클래스의 객체에서는 찾을 수 없다. 그렇기에 알 수 없는 값이 출력 될 것이다. \
+이렇게 기본 클래스를 다운 캐스팅 하고, 파생 클래스에만 존재하는 멤버에 접근할 때 문제가 될 수 있다.
