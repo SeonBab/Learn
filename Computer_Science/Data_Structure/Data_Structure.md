@@ -16,22 +16,6 @@
 + 재사용성 \
 자료구조를 설계할 때 특정 프로그램에서만 동작하게 설계하지 않는다. 다양한 프로그램에서 동작하도록 범용성 있게 설계한다.
 
-### 자료구조의 분류
-
-자료구조는 크게 선형 자료구조와 비선형 자료구조로 나뉜다.
-
-선형 자료구조
-+ 데이터들이 선 형태로 순차적으로 나열되어있는 구조
-+ 전, 후 데이터들 간에 1:1 관계
-+ 각 원소가 메모리에서 연속된 위치를 차지하므로 빠른 접근이 가능하고, 메모리 캐시 효율성도 높아진다.
-+ 크기가 고정되어있어 크기를 변경하기 어렵다. 즉 원소를 삽입하거나 삭제하는 작업에는 비효율적이다.
-
-비선형 자료구조
-+ 하나의 자료 뒤에 여러개의 자료가 존재할 수 있는 구조
-+ 전, 후 데이터들 간에 1:N 관계
-+ 메모리 어디에나 위치할 수 있는 자료구조이고, 메모리 공간을 효율적으로 사용할 수 있다.
-+ 크기가 동적으로 조정될 수 있고, 원소를 삽입하거나 삭제하는 작업에 효율적이다.
-
 ### 자료구조의 선택 기준
 
 + 자료의 처리 시간
@@ -39,3 +23,16 @@
 + 자료의 활용 빈도
 + 자료의 갱신 정도
 + 프로그램의 용이성
+
+### 자료구조의 분류
+
+단순 구조
++ 정수, 실수, 문자, 문자열등 자료의 형태를 의미한다. 
+
+[선형 자료구조](https://github.com/SeonBap/TIL/blob/main/Computer_Science/Data_Structure/Linear_Structure.md)
+
+[비선형 자료구조](https://github.com/SeonBap/TIL/blob/main/Computer_Science/Data_Structure/NonLinear_Structure.md)
+
+[파일 구조](https://github.com/SeonBap/TIL/blob/main/Computer_Science/Data_Structure/File_Structure.md)
+
+![Data_Structure_Clasification](https://github.com/SeonBap/Learn/assets/112116885/4d4e525c-86ce-4e39-b627-bea240bd31f6)
