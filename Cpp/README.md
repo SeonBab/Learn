@@ -15,11 +15,11 @@
 + [포인터](https://github.com/SeonBap/TIL/blob/main/Cpp/Pointer.md)
 + [구조체](https://github.com/SeonBap/TIL/blob/main/Cpp/Structure_Type.md)
 + [클래스](https://github.com/SeonBap/TIL/blob/main/Cpp/Class/README.md)
-+ [자료 구조](https://github.com/SeonBap/TIL/blob/main/Cpp/Data_Structure/README.md)
+
++ [표준 라이브러리](https://github.com/SeonBap/TIL/blob/main/Cpp/Standard_Library/README.md)
 
 # 참고
 
-+ 게임캔버스
 + [TCPSCHOOL.com](http://www.tcpschool.com/cpp/intro)
 + [마이크로소프트 C++ 언어 참조](https://learn.microsoft.com/ko-kr/cpp/cpp/?view=msvc-170)
 + [cplusplus](https://cplusplus.com/)
