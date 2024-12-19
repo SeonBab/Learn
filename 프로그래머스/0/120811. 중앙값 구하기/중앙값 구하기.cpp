@@ -51,7 +51,7 @@ void mergeSort(std::vector<int>& array, int left, int right)
 }
 
 int solution(std::vector<int> array) {
-    int answer{}, temp{}, min{}, index{};
+    int answer{};
 
     mergeSort(array, 0, array.size() - 1);
 
