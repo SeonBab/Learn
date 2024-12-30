@@ -1,26 +1,16 @@
 int solution(int num) {
-    int answer = 0;
+    int answer = -1;
+    long long n = num;
     
-    for (int i = 0; i <= 500; ++i)
+    for (int i = 0; i < 500; ++i)
     {   
-        if (1 == num)
+        if (1 == n)
         {
             answer = i;
             break;
         }
-        else if (500 == i)
-        {
-            answer = -1;
-        }
-        
-        if (0 == num % 2)
-        {
-            num /= 2;
-        }
-        else if (1 == num % 2)
-        {
-            num = num * 3 + 1;
-        }
+
+        n = (0 == n % 2) ? n / 2 : n * 3 + 1;
     }
     
     return answer;
