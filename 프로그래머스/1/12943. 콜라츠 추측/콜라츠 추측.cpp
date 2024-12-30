@@ -1,8 +1,3 @@
-#include <string>
-#include <vector>
-
-using namespace std;
-
 int solution(int num) {
     int answer = 0;
     
@@ -13,6 +8,10 @@ int solution(int num) {
             answer = i;
             break;
         }
+        else if (500 == i)
+        {
+            answer = -1;
+        }
         
         if (0 == num % 2)
         {
@@ -22,11 +21,7 @@ int solution(int num) {
         {
             num = num * 3 + 1;
         }
-        
-        if (500 == i)
-        {
-            answer = -1;
-        }
     }
+    
     return answer;
 }
