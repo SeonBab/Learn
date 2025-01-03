@@ -1,34 +1,15 @@
 #include <vector>
-#include <limits>
+#include <algorithm>
 
-using namespace std;
+std::vector<int> solution(std::vector<int> arr) {
+    std::vector<int>::iterator min = min_element(arr.begin(), arr.end());
 
-vector<int> solution(vector<int> arr) {
-    vector<int> answer;
-    int min = std::numeric_limits<int>::max();
-    int minIndex = 0;
-    
-    for (int i = 0; i < arr.size(); ++i)
+    arr.erase(min);
+
+    if (true == arr.empty())
     {
-        if (min > arr[i])
-        {
-            min = arr[i];
-            minIndex = i;
-        }
+        arr.push_back(-1);
     }
-    
-    for (int i = 0; i < arr.size(); ++i)
-    {
-        if (i != minIndex)
-        {
-            answer.push_back(arr[i]);
-        }
-    }
-    
-    if (0 == answer.size())
-    {
-        answer.push_back(-1);
-    }
-    
-    return answer;
+
+    return arr;
 }
