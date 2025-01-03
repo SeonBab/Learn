@@ -5,7 +5,7 @@ std::string solution(std::string s) {
     
     if (0 == s.size() % 2)
     {
-        answer += s[s.size()/2 - 1];   
+        answer = s[s.size()/2 - 1];   
     }
     
     answer += s[s.size()/2];
