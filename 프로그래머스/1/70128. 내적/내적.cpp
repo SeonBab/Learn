@@ -1,12 +1,6 @@
 #include <vector>
+#include <numeric>
 
-int solution(std::vector<int> a, std::vector<int> b) {
-    int answer = 0;
-    
-    for (int i = 0; i < a.size(); ++i)
-    {
-        answer += a[i] * b[i];
-    }
-    
-    return answer;
+int solution(std::vector<int> a, std::vector<int> b) {    
+    return inner_product(a.begin(),a.end(),b.begin(),0);
 }
