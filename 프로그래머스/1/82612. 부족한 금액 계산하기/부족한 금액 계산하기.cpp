@@ -1,10 +1,12 @@
 long long solution(int price, int money, int count)
 {
     long long answer = -1;
+    answer *= money;
     
-    long long totalCost = static_cast<long long>(price) * count * (count + 1) / 2;
-    
-    answer = totalCost - money;
+    for (int i = 1; i <= count; ++i)
+    {
+        answer += i * price;
+    }
     
     if (answer < 0)
     {
