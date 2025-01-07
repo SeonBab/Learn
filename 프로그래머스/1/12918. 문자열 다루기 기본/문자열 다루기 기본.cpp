@@ -11,7 +11,7 @@ bool solution(std::string s) {
     
     for (int i = 0; i < s.size(); ++i)
     {
-        if ('0' > s[i] || '9' < s[i])
+        if (!isdigit(s[i]))
         {
             answer = false;
             break;
