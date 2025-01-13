@@ -11,17 +11,20 @@ std::string solution(std::string s) {
         {
             index = 0;
             answer += ' ';
+            
+            continue;
         }
-        else if (index % 2 == 0)
+        
+        if (index % 2 == 0)
         {
             answer += std::toupper(s[i]);
-            ++index;
         }
         else
         {
             answer += std::tolower(s[i]);
-            ++index;
         }
+        
+        ++index;
     }
     
     return answer;
