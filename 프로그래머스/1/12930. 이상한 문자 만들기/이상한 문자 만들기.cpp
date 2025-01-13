@@ -17,15 +17,23 @@ std::string solution(std::string s) {
         
         if (index % 2 == 0)
         {
-            answer += std::toupper(s[i]);
+            if ('a' <= s[i])
+            {
+                s[i] = static_cast<int>(s[i]) - 32;
+            }
         }
         else
         {
-            answer += std::tolower(s[i]);
+            if ('a' > s[i])
+            {
+                s[i] = static_cast<int>(s[i]) + 32;
+            }
         }
         
         ++index;
     }
+
+    answer = s;
     
     return answer;
 }
