@@ -2,28 +2,22 @@
 #include <vector>
 #include <unordered_map>
 
-#include <iostream>
-
 using namespace std;
 
 vector<int> solution(string s) {
-    vector<int> answer;
+    vector<int> answer(s.size(), -1);
+    unordered_map<char, int> lastIndex;
     
     for (int i = 0; i < s.length(); ++i)
     {
-        for (int j = answer.size(); j >= 0; --j)
+        char curChar = s[i];
+        
+        if (lastIndex.find(curChar) != lastIndex.end())
         {
-            if (0 == j)
-            {
-                answer.push_back(-1);
-            }
-            else if (s[j - 1] == s[i])
-            {
-                answer.push_back(answer.size() - j + 1);
-                break;
-            }
+            answer[i] = i - lastIndex[curChar];
         }
+        
+        lastIndex[curChar] = i;
     }
-    
     return answer;
 }
