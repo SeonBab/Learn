@@ -1,22 +1,20 @@
 #include <vector>
-#include <algorithm>
+#include <queue>
 
 std::vector<int> solution(int k, std::vector<int> score) {
     std::vector<int> answer;
-    std::vector<int> temp;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
     
-    for (int i = 0; i < score.size(); ++i)
+    for (auto e : score)
     {
-        temp.push_back(score[i]);
+        minHeap.push(e);
         
-        std::sort(temp.rbegin(), temp.rend());
-        
-        if (k < temp.size())
+        if (k < minHeap.size())
         {
-            temp.pop_back();
+            minHeap.pop();
         }
         
-        answer.push_back(temp.back());
+        answer.push_back(minHeap.top());
     }
     
     return answer;
