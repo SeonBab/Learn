@@ -1,5 +1,5 @@
 #include <vector>
-#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,33 +10,25 @@ vector<int> solution(vector<int> answers) {
     vector<int> two { 2, 1, 2, 3, 2, 4, 2, 5 };
     vector<int> three { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
     
-    int isOneCorrect = 0;
-    int isTwoCorrect = 0;
-    int isThreeCorrect = 0;
+    vector<int> Correct(3, 0);
     
     for (int i = 0; i < answers.size(); ++i)
     {
-        isOneCorrect += (answers[i] == one[i % one.size()]) ? 1 : 0;
+        if (answers[i] == one[i % one.size()]) ++Correct[0];
         
-        isTwoCorrect += (answers[i] == two[i % two.size()]) ? 1 : 0;
+        if (answers[i] == two[i % two.size()]) ++Correct[1];
         
-        isThreeCorrect += (answers[i] == three[i % three.size()]) ? 1 : 0;
+        if (answers[i] == three[i % three.size()]) ++Correct[2];
     }
     
-    int highestCorrect = (isOneCorrect > isTwoCorrect) ? isOneCorrect : isTwoCorrect;
-    highestCorrect = (highestCorrect > isThreeCorrect) ? highestCorrect : isThreeCorrect;
-        
-    if (highestCorrect == isOneCorrect)
+    int highestCorrect = *(max_element(Correct.begin(), Correct.end()));
+    
+    for (int i = 0; i < Correct.size(); ++i)
     {
-        answer.push_back(1);
-    }
-    if (highestCorrect == isTwoCorrect)
-    {
-        answer.push_back(2);
-    }
-    if (highestCorrect == isThreeCorrect)
-    {
-        answer.push_back(3);
+        if (highestCorrect == Correct[i])
+        {
+            answer.push_back(i + 1);
+        }
     }
     
     return answer;
