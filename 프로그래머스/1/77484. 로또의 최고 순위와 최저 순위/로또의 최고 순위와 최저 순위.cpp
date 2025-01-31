@@ -4,9 +4,7 @@ using namespace std;
 
 vector<int> solution(vector<int> lottos, vector<int> win_nums) {
     vector<int> answer;
-    
-    vector<int> lank{6, 6, 5, 4, 3, 2, 1};
-    
+        
     int high = 0;
     int low = 0;
     
@@ -29,8 +27,11 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
         }
     }
     
-    answer.push_back(lank[high]);
-    answer.push_back(lank[low]);
+    high = (high > 1) ? high : 1;
+    low = (low > 1) ? low : 1;
+    
+    answer.push_back(7 - high);
+    answer.push_back(7 - low);
     
     return answer;
 }
