@@ -7,9 +7,9 @@ vector<string> babyWords { "aya", "ye", "woo", "ma" };
 
 bool canPronounce(string& babbling)
 {
+    bool found = true;
     string prev;
     int j = 0;
-    bool found = true;
         
     while (j < babbling.length())
     {
