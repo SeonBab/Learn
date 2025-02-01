@@ -1,8 +1,6 @@
 #include <string>
 #include <vector>
 
-#include <iostream>
-
 using namespace std;
 
 int solution(vector<string> babbling) {
@@ -24,7 +22,6 @@ int solution(vector<string> babbling) {
                 
                 if (substr == babyWords[k] && substr != found)
                 {
-                    cout << substr << endl;
                     found = substr;
                     substr = "";
                 }
