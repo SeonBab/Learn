@@ -3,40 +3,53 @@
 
 using namespace std;
 
+vector<string> babyWords { "aya", "ye", "woo", "ma" };
+
+bool canPronounce(string& babbling)
+{
+    string prev;
+    int j = 0;
+    bool found = true;
+        
+    while (j < babbling.length())
+    {
+        for (int k = 0; k < babyWords.size(); ++k)
+        {
+            string substr = babbling.substr(j, babyWords[k].length());
+                
+            if (substr == prev)
+            {
+                return false;
+            }
+                
+            if (substr == babyWords[k])
+            {
+                found = true;
+                prev = substr;
+                j += babyWords[k].length();
+                break;
+            }
+            else
+            {
+                found = false;
+            }
+        }
+            
+        if (!found)
+        {
+           return false;
+        }
+    }
+    
+    return found;
+}
+
 int solution(vector<string> babbling) {
     int answer = 0;
     
-    vector<string> babyWords { "aya", "ye", "woo", "ma" };
-    
     for (int i = 0; i < babbling.size(); ++i)
     {
-        string substr;
-        string prev;
-        int j = 0;
-        
-        while (j < babbling[i].size())
-        {
-            bool found = false;
-            for (int k = 0; k < babyWords.size(); ++k)
-            {
-                substr = babbling[i].substr(j, babyWords[k].length());
-                
-                if (substr == babyWords[k] && prev != substr)
-                {
-                    prev = substr;
-                    substr = "";
-                    j += babyWords[k].length();
-                    found = true;
-                }
-            }
-            
-            if (!found)
-            {
-                break;
-            }
-        }
-        
-        if (substr == "")
+        if (canPronounce(babbling[i]))
         {
             ++answer;
         }
