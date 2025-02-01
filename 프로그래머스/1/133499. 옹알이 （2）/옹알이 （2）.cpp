@@ -11,20 +11,28 @@ int solution(vector<string> babbling) {
     for (int i = 0; i < babbling.size(); ++i)
     {
         string substr;
-        string found;
+        string prev;
+        int j = 0;
         
-        for (int j = 0; j < babbling[i].size(); ++j)
+        while (j < babbling[i].size())
         {
-            substr += babbling[i][j];
-            
+            bool found = false;
             for (int k = 0; k < babyWords.size(); ++k)
             {
+                substr = babbling[i].substr(j, babyWords[k].length());
                 
-                if (substr == babyWords[k] && substr != found)
+                if (substr == babyWords[k] && prev != substr)
                 {
-                    found = substr;
+                    prev = substr;
                     substr = "";
+                    j += babyWords[k].length();
+                    found = true;
                 }
+            }
+            
+            if (!found)
+            {
+                break;
             }
         }
         
