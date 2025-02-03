@@ -30,7 +30,7 @@ string solution(string X, string Y) {
         
         for (int j = 0; j < minValue; ++j)
         {
-            answer += '0' + i;
+            answer.push_back('0' + i);
         }
     }
     
