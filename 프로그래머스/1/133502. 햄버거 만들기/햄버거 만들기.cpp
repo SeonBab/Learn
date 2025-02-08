@@ -1,25 +1,23 @@
+#include <string>
 #include <vector>
 
 using namespace std;
 
 int solution(vector<int> ingredient) {
     int answer = 0;
-
-    vector<int> hamburger;
-    
-    for(int e : ingredient)
-    {
-        hamburger.push_back(e);
+    vector<int> v = { 0 };
         
-        if (hamburger.size() >= 4 &&
-            hamburger[hamburger.size() - 4] == 1 &&
-            hamburger[hamburger.size() - 3] == 2 &&
-            hamburger[hamburger.size() - 2] == 3 &&
-            hamburger[hamburger.size() - 1] == 1)
-        {
-            hamburger.erase(hamburger.end() - 4, hamburger.end());
-            ++answer;
+    for (auto i : ingredient) {
+        if (v.back() == 1 && i == 2)
+            v.back() = 12;
+        else if (v.back() == 12 && i == 3)
+            v.back() = 123;
+        else if (v.back() == 123 && i == 1) {
+            answer++;
+            v.pop_back();
         }
+        else
+            v.push_back(i);
     }
     
     return answer;
