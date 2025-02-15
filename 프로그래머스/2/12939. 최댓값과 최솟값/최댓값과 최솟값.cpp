@@ -19,9 +19,7 @@ string solution(string s) {
         maxNum = (maxNum < compNum) ? compNum : maxNum;
     }
     
-    answer += to_string(minNum);
-    answer += " ";
-    answer += to_string(maxNum);
-    
+    answer = to_string(minNum) + " " + to_string(maxNum);
+
     return answer;
 }
