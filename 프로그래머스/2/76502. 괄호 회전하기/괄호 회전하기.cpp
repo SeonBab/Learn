@@ -1,5 +1,6 @@
 #include <string>
 #include <stack>
+#include <algorithm>
 
 using namespace std;
 
@@ -35,8 +36,7 @@ int solution(string s) {
             ++answer;
         }
         
-        s += s[0];
-        s = s.substr(1);
+        rotate(s.begin(), s.begin() + 1, s.end());
     }
     
     return answer;
