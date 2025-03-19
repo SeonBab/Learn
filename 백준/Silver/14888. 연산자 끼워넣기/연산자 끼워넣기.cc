@@ -19,37 +19,31 @@ void backtrack(const vector<int>& numList, vector<int>& operatorList, int curRes
 
 	for (int operIndex = 0; operIndex < operatorList.size(); ++operIndex)
 	{
-		if (operatorList[operIndex] > 0)
-		{
-			--operatorList[operIndex];
-		}
-		else
-		{
-			continue;
-		}
+		if (operatorList[operIndex] > 0) --operatorList[operIndex];
+		else continue;
 
 		int nextResult = curResult;
 
 		switch (operIndex)
 		{
 		case 0:
-			backtrack(numList, operatorList, curResult + numList[numListIndex], numListIndex + 1);
+			nextResult += numList[numListIndex];
 			break;
 		case 1:
-			backtrack(numList, operatorList, curResult - numList[numListIndex], numListIndex + 1);
+			nextResult -= numList[numListIndex];
 			break;
 		case 2:
-			backtrack(numList, operatorList, curResult * numList[numListIndex], numListIndex + 1);
+			nextResult *= numList[numListIndex];
 			break;
 		case 3:
 			if (curResult < 0) nextResult = -(-nextResult / numList[numListIndex]);
 			else nextResult /= numList[numListIndex];
-
-			backtrack(numList, operatorList, nextResult, numListIndex + 1);
 			break;
 		default:
 			break;
 		}
+
+		backtrack(numList, operatorList, nextResult, numListIndex + 1);
 
 		++operatorList[operIndex];
 	}
