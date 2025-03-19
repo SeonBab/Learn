@@ -49,7 +49,6 @@ void backtrack(const vector<int>& numList, vector<int>& operatorList, int curRes
 	}
 }
 
-// 사용 예시
 int main()
 {
 	int n;
