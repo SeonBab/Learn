@@ -16,7 +16,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
         return -1;
     }
     
-    int maxCount = queue1.size() * 2 + 2;
+    int maxCount = queue1.size() * 3 - 3;
     queue<int> q1, q2;
     
     for (int i = 0; i < queue1.size(); ++i)
