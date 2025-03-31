@@ -4,25 +4,26 @@ using namespace std;
 
 int answer = 0;
 
-void dfs(vector<int>& numbers, int index, int sum, int target)
+void dfs(const vector<int>& numbers, const int target, int index, int curNum)
 {
-    if (index == numbers.size())
+    if (numbers.size() <= index)
     {
-        if (sum == target)
+        if (curNum == target)
         {
             ++answer;
         }
-        
         return;
     }
     
-    dfs(numbers, index + 1, sum + numbers[index], target);
-    dfs(numbers, index + 1, sum - numbers[index], target);
+    int nextIndex = index + 1;
+    
+    dfs(numbers, target, nextIndex,  curNum + numbers[index]);
+    dfs(numbers, target, nextIndex,  curNum - numbers[index]);
 }
 
 int solution(vector<int> numbers, int target) {
     
-    dfs(numbers, 0, 0, target);
+    dfs(numbers, target, 0, 0);
     
     return answer;
 }
