@@ -1,26 +1,21 @@
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 int main()
 {
-	std::string str;
-	std::cin >> str;
+    std::string input;
+    std::cin >> input;
 
-	std::unordered_map<char, int> alphabetMap;
+    std::vector<int> count(26, 0);
 
-	for (char i = 'a'; i <= 'z'; ++i)
-	{
-		alphabetMap[i] = 0;
-	}
+    for (char alphabet : input)
+    {
+        count[alphabet - 'a']++;
+    }
 
-	for (const char alphabet : str)
-	{
-		++alphabetMap[alphabet];
-	}
-
-	for (char i = 'a'; i <= 'z'; ++i)
-	{
-		std::cout << alphabetMap[i] << " ";
-	}
+    for (int i = 0; i < 26; ++i)
+    {
+        std::cout << count[i] << " ";
+    }
 }
