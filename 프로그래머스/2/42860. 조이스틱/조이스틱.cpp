@@ -14,13 +14,15 @@ int solution(string name) {
         answer += min(c - 'A', 'Z' - c + 1);
 
         int next = i + 1;
-        while (next < name.length() && name[next] == 'A')
+        while (next < strLength && name[next] == 'A')
         {
             ++next;
         }
 
-        moveCount = min(moveCount, i * 2 + strLength - next);
-        moveCount = min(moveCount, (strLength - next) * 2 + i);
+        int targetDistance = strLength - next;
+
+        moveCount = min(moveCount, i * 2 + targetDistance);
+        moveCount = min(moveCount, targetDistance * 2 + i);
     }
 
     answer += moveCount;
