@@ -46,21 +46,15 @@ vector<string> solution(vector<string> s) {
             st.pop();
         }
         
-        string insertStr = "";
-        for (int i = 0; i < count; ++i)
-        {
-            insertStr += "110";
-        }
-        
         int pos = temp.find_last_of('0');
         if (pos == string::npos)
         {
-            temp = insertStr + temp;
+            temp = string(count, '1') + string(count, '1') + string(count, '0') + temp;
         }
         else
         {
-            temp.insert(pos + 1, insertStr);
-        }
+            temp.insert(pos + 1, string(count, '1') + string(count, '1') + string(count, '0'));
+       }
         
         answer.push_back(temp);
     }
