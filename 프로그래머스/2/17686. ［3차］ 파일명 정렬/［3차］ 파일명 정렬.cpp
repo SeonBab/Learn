@@ -45,24 +45,23 @@ bool compare(string a, string b)
     string aHead = lowerHead(a);
     string bHead = lowerHead(b);
     
-    // HEAD 사전순 확인
-    if (aHead < bHead)
+    if (aHead != bHead)
     {
-        return true;
+        return aHead < bHead;
     }
     
     int aNum = getNumber(a);
     int bNum = getNumber(b);
     
-    if (aNum < bNum)
+    if (aNum != bNum)
     {
-        return true;
+        return aNum < bNum;
     }
     
     return false;
 }
 
 vector<string> solution(vector<string> files) {
-    sort(files.begin(), files.end(), compare);
+    stable_sort(files.begin(), files.end(), compare);
     return files;
 }
