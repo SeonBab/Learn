@@ -1,15 +1,17 @@
-#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 int main()
 {
-    int A,B =0;
-
-    scanf("%d\n%d", &A, &B);
-    printf("%d\n",(A*(B%10)));
-    printf("%d\n",(A*(B%100/10)));
-    printf("%d\n",(A*(B/100)));
-    printf("%d", A*B);
+    int a, b;
+    
+    cin >> a >> b;
+    
+    cout << a*(b%10)<< "\n";
+    cout << a*((b/10)%10) <<"\n";
+    cout << a*(b/100) << "\n";
+    cout << a*b << endl;
     
     
-    return 0;
 }
